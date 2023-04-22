@@ -7,10 +7,20 @@
 #include "mmu.h"
 #include "proc.h"
 
+// var that counts the systemcalls
+unsigned int count = 0;
+
 int
 sys_fork(void)
 {
-  return fork();
+    int tickets;
+
+    // The argint method return the arguments sent to the function
+    if(argint(0, &tickets) < 0) {
+        return -1;
+    }
+
+    return fork(tickets);
 }
 
 int
@@ -40,6 +50,12 @@ int
 sys_getpid(void)
 {
   return myproc()->pid;
+}
+
+int
+sys_getsortednumber(void)
+{
+    return myproc()->times_sorted;
 }
 
 int
@@ -88,4 +104,14 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int
+sys_csc(void){
+  return count;
+}
+
+int
+sys_cps(void){
+    return cps();
 }
