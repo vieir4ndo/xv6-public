@@ -2,7 +2,7 @@ struct stat;
 struct rtcdate;
 
 // system calls
-int fork(void);
+int fork(int);
 int exit(void) __attribute__((noreturn));
 int wait(void);
 int pipe(int*);
@@ -20,9 +20,15 @@ int mkdir(const char*);
 int chdir(const char*);
 int dup(int);
 int getpid(void);
+int getsortednumber(void);
+int gettickets(void);
+int getstride(void);
+int getcurrentstride(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int csc(void);
+int cps(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

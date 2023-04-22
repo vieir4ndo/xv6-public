@@ -80,6 +80,7 @@ void            lapiceoi(void);
 void            lapicinit(void);
 void            lapicstartap(uchar, uint);
 void            microdelay(int);
+unsigned long   unixtime(void);
 
 // log.c
 void            initlog(int dev);
@@ -105,7 +106,7 @@ int             pipewrite(struct pipe*, char*, int);
 // proc.c
 int             cpuid(void);
 void            exit(void);
-int             fork(void);
+int             fork(int);
 int             growproc(int);
 int             kill(int);
 struct cpu*     mycpu(void);
@@ -120,6 +121,8 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+int             csc(void);
+int             cps(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);
